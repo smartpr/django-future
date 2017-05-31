@@ -2,7 +2,6 @@
 Tests for django_future.
 """
 
-import unittest
 import doctest
 
 from django_future import job_as_parameter
