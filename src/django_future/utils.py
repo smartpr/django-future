@@ -7,6 +7,7 @@ _TIMEDELTA_SUFFIXES = {'m': 'minutes',
                        'd': 'days',
                        'w': 'weeks'}
 
+
 def parse_timedelta(s):
     n, suffix = int(s[:-1]), s[-1]
     key = _TIMEDELTA_SUFFIXES[suffix]
