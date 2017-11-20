@@ -108,25 +108,6 @@ passed as a parameter.  Example::
     ... def handler(job):
     ...     do_stuff()
 
-------------
-Rescheduling
-------------
-
-Some jobs may need to be repeated.  You can achieve this by scheduling a new
-job in the handler of a job, but it is more convenient to use the ``reschedule``
-method on jobs. ``reschedule`` has the same signature as ``schedule_job``, but
-copies attributes of the current job.
-
-::
-
-    >>> @job_as_parameter
-    ... def handler(job, n=5):
-    ...     do_something()
-    ...     job.reschedule('3d', kwargs={'n': 6})
-
-When you pass a relative time value to ``reschedule``, the new scheduled time
-is calculated by adding the offset to the *scheduled time* of the original job,
-not to the time the job was actually executed.
 
 --------
 Feedback

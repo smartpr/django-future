@@ -2,7 +2,8 @@ Scheduled jobs
 ==============
 
     >>> import datetime
-    >>> from django_future import schedule_job, ScheduledJob, run_jobs
+    >>> from django_future.models import ScheduledJob
+    >>> from django_future.jobs import schedule_job, ScheduledJob, run_jobs
 
     >>> for job in ScheduledJob.objects.all():
     ...     job.delete()
@@ -73,15 +74,6 @@ Handlers can request the job as a parameter:
 You can also bind model objects to jobs.
 
     TODO: bind to a sample model
-
-Rescheduling
-------------
-
-    >>> job = schedule_job('0h', 'django_future.tests.sample_job')
-
-    >>> job2 = job.reschedule('3d')
-    >>> job2.callable_name
-    'django_future.tests.sample_job'
 
 Errors
 ------
