@@ -117,10 +117,12 @@ def _run_scheduled_jobs(run_at, delete_completed, ignore_errors):
     # Issue a commit to ensure there is no open transaction
     transaction.commit()
 
-    # Fetch scheduled jobs.
+    # Fetch scheduled jobs. Order by `time_slot_start` to ensure oldest jobs
+    # run first.
     scheduled_jobs = ScheduledJob.objects.filter(
-            status=ScheduledJob.STATUS_SCHEDULED,
-            time_slot_start__lte=run_at)
+        status=ScheduledJob.STATUS_SCHEDULED,
+        time_slot_start__lte=run_at
+    ).order_by('time_slot_start')
 
     for job in scheduled_jobs:
         _run_scheduled_job(job, delete_completed, ignore_errors)
