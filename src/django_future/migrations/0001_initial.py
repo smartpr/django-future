@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('kwargs', picklefield.fields.PickledObjectField(verbose_name='kwargs', editable=False)),
                 ('error', models.TextField(null=True, verbose_name='error', blank=True)),
                 ('return_value', models.TextField(null=True, verbose_name='return value', blank=True)),
-                ('content_type', models.ForeignKey(verbose_name='content type', blank=True, to='contenttypes.ContentType', null=True)),
+                ('content_type', models.ForeignKey(on_delete=models.CASCADE, verbose_name='content type', blank=True, to='contenttypes.ContentType', null=True)),
             ],
             options={
                 'ordering': ['time_slot_start'],

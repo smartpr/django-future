@@ -33,7 +33,8 @@ class ScheduledJob(models.Model):
             default=STATUS_SCHEDULED)
 
     content_type = models.ForeignKey(
-            ContentType, blank=True, null=True, verbose_name=_('content type'))
+            ContentType, on_delete=models.CASCADE, blank=True, null=True,
+            verbose_name=_('content type'))
 
     object_id = models.PositiveIntegerField(
             _('object ID'), blank=True, null=True)
