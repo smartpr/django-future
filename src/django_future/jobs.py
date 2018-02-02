@@ -3,8 +3,6 @@
 import datetime
 import traceback
 
-from django.core import exceptions
-from django.db import transaction
 from django.utils import timezone
 
 from django_future.models import ScheduledJob
@@ -74,9 +72,6 @@ def _expire_jobs(expire_at):
 
 
 def _run_scheduled_job(job, delete_completed, ignore_errors):
-    """
-    Assumes we're running with AUTOCOMMIT=True (Default)
-    """
     # Mark job as running
     job.status = ScheduledJob.STATUS_RUNNING
     job.execution_start = timezone.now()
@@ -111,12 +106,6 @@ def _run_scheduled_jobs(run_at, delete_completed, ignore_errors):
     The following code requires autocommit mode to be enabled. (Django's
     default)
     """
-    if not transaction.get_autocommit():
-        raise exceptions.ImproperlyConfigured("Expecting AUTOCOMMIT=True")
-
-    # Issue a commit to ensure there is no open transaction
-    transaction.commit()
-
     # Fetch scheduled jobs. Order by `time_slot_start` to ensure oldest jobs
     # run first.
     scheduled_jobs = ScheduledJob.objects.filter(
