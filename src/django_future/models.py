@@ -1,11 +1,17 @@
+from __future__ import unicode_literals
+
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.utils.encoding import (
+    force_str, force_text, python_2_unicode_compatible)
+
 from django.utils.translation import ugettext_lazy as _
 
 from picklefield import PickledObjectField
 
 
+@python_2_unicode_compatible
 class ScheduledJob(models.Model):
 
     STATUS_SCHEDULED = 'scheduled'
@@ -65,11 +71,12 @@ class ScheduledJob(models.Model):
         ordering = ['time_slot_start']
 
     def __repr__(self):
-        return '<ScheduledJob (%s) callable=%r>' % (
-                    self.status, self.callable_name)
+        return force_str(
+                '<%s (%s) callable=%r>' % (
+                    type(self).__name__, self.status, self.callable_name))
 
-    def __unicode__(self):
-        return self.callable_name
+    def __str__(self):
+        return force_text(self.callable_name)
 
     def run(self):
         """
