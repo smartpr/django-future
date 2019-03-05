@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('time_slot_start', models.DateTimeField(verbose_name='time slot start')),
                 ('time_slot_end', models.DateTimeField(verbose_name='time slot end')),
                 ('execution_start', models.DateTimeField(null=True, verbose_name='execution start', blank=True)),
-                ('status', models.CharField(default=b'scheduled', max_length=32, verbose_name='status', choices=[(b'scheduled', 'Scheduled'), (b'running', 'Running'), (b'failed', 'Failed'), (b'complete', 'Complete'), (b'expired', 'Expired')])),
+                ('status', models.CharField(default='scheduled', max_length=32, verbose_name='status', choices=[('scheduled', 'Scheduled'), ('running', 'Running'), ('failed', 'Failed'), ('complete', 'Complete'), ('expired', 'Expired')])),
                 ('object_id', models.PositiveIntegerField(null=True, verbose_name='object ID', blank=True)),
                 ('callable_name', models.CharField(help_text='The callable to be executed may be specified in two ways: Set the callable name to an identifier (mypackage.myapp.some_function). Or specify an instance of a model as the content object and set the callable name to a method name (do_job).', max_length=255, verbose_name='callable name')),
                 ('args', picklefield.fields.PickledObjectField(verbose_name='args', editable=False)),
