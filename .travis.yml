@@ -5,7 +5,6 @@ python:
  - "3.6"
 
 env:
- - DJANGO_ENV=django110
  - DJANGO_ENV=django111
 
 install:
