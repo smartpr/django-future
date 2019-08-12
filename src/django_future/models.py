@@ -70,6 +70,10 @@ class ScheduledJob(models.Model):
         get_latest_by = 'time_slot_start'
         ordering = ['time_slot_start']
 
+        unique_together = [
+            ('content_type', 'object_id'),
+        ]
+
     def __repr__(self):
         return force_str(
                 '<%s (%s) callable=%r>' % (
