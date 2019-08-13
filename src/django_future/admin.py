@@ -29,10 +29,8 @@ class ScheduledJobAdmin(admin.ModelAdmin):
     list_display = (
         'time_slot_start',
         'colorful_status',
-        'callable_name',
-        'args',
-        'kwargs',
-        'return_value'
+        'object_id',
+        'content_object',
     )
 
     list_filter = ('status',)
