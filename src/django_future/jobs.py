@@ -1,12 +1,8 @@
 """Django-future -- scheduled jobs in Django."""
-from __future__ import unicode_literals
-
 import datetime
 import traceback
 
-from django.utils import six
 from django.utils import timezone
-from django.utils.encoding import force_text
 
 from django_future.models import ScheduledJob
 from django_future.utils import parse_timedelta
@@ -32,9 +28,9 @@ def schedule_job(date, callable_name, content_object=None, expires='7d',
     """
     # TODO: allow to pass in a real callable, but check that it's a global
     assert callable_name \
-        and isinstance(callable_name, six.string_types), callable_name
+        and isinstance(callable_name, str), callable_name
 
-    if isinstance(date, six.string_types):
+    if isinstance(date, str):
         date = parse_timedelta(date)
 
     if isinstance(date, datetime.timedelta):
@@ -43,7 +39,7 @@ def schedule_job(date, callable_name, content_object=None, expires='7d',
     job = ScheduledJob(callable_name=callable_name, time_slot_start=date)
 
     if expires:
-        if isinstance(expires, six.string_types):
+        if isinstance(expires, str):
             expires = parse_timedelta(expires)
         if isinstance(expires, datetime.timedelta):
             expires = date + expires
@@ -98,7 +94,7 @@ def _run_scheduled_job(job, delete_completed, ignore_errors):
         else:
             job.status = ScheduledJob.STATUS_COMPLETE
             if return_value is not None:
-                job.return_value = force_text(return_value)
+                job.return_value = str(return_value)
             else:
                 job.return_value = None
             job.save()
