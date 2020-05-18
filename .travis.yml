@@ -1,11 +1,11 @@
 language: python
 
 python:
- - "2.7"
  - "3.6"
 
 env:
  - DJANGO_ENV=django111
+ - DJANGO_ENV=django2
 
 install:
  - pip install tox
