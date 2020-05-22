@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from django_future.models import ScheduledJob
@@ -17,14 +18,15 @@ class ScheduledJobAdmin(admin.ModelAdmin):
     }
 
     def colorful_status(self, obj):
-        color = self.status_colors['default']
         if obj.status in self.status_colors:
             color = self.status_colors[obj.status]
-        return '<strong style="color: %s">%s</strong>' % (
-                color, obj.get_status_display())
-
+        else:
+            color = self.status_colors['default']
+        return format_html(
+            '<strong style="color: {0}">{1}</strong>',
+            color, obj.get_status_display()
+        )
     colorful_status.short_description = 'Status'
-    colorful_status.allow_tags = True
 
     list_display = (
         'time_slot_start',
