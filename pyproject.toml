@@ -15,7 +15,6 @@ authors = [
 ]
 classifiers=[
     "Development Status :: 4 - Beta",
-    "Private :: Do Not Upload",
     "License :: OSI Approved :: MIT License",
     "Framework :: Django",
     "Programming Language :: Python :: 3",
@@ -30,4 +29,4 @@ readme = "README.rst"
 requires-python = ">=3.8"
 
 [project.urls]
-Repository = "http://github.com/shrubberysoft/django-future"
+Repository = "https://github.com/smartpr/django-future"
