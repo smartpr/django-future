@@ -5,4 +5,7 @@
 /dist
 /temp
 /src/django_future.egg-info
-
+/src/django_future_fork.egg-info
+/.envrc
+/.direnv
+/.tox
