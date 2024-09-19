@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-future"
+version = "0.4.0"
+authors = [
+    { name="Shrubbery Software", email="team@shrubberysoft.com"},
+    { name="Gintautas Miliauskas", email="team@shrubberysoft.com"},
+    { name="Adomas Paltanavičius", email="team@shrubberysoft.com"},
+    { name="Maciek Szczesniak", email="team@shrubberysoft.com"},
+    { name="Jannis Leidel", email="team@shrubberysoft.com"},
+    { name="Smart.pr", email="engineering@smart.pr"},
+]
+classifiers=[
+    "Development Status :: 4 - Beta",
+    "Private :: Do Not Upload",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Django",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "django-picklefield",
+    "django>3.0",
+]
+description="Scheduled jobs in Django"
+license = {file = "LICENSE"}
+readme = "README.rst"
+requires-python = ">=3.8"
+
+[project.urls]
+Repository = "http://github.com/shrubberysoft/django-future"
