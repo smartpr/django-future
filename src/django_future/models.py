@@ -71,7 +71,7 @@ class ScheduledJob(models.Model):
 
     def __repr__(self):
         return str(
-                '<%s (%s) callable=%r>' % (
+                '<{} ({}) callable={!r}>'.format(
                     type(self).__name__, self.status, self.callable_name))
 
     def __str__(self):

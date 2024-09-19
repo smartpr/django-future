@@ -33,11 +33,11 @@ class JobsTestCase(TransactionTestCase):
 
         job1.refresh_from_db()
         self.assertEqual(job1.status, ScheduledJob.STATUS_COMPLETE)
-        self.assertEqual(job1.return_value, u'4.0')
+        self.assertEqual(job1.return_value, '4.0')
 
         job2.refresh_from_db()
         self.assertEqual(job2.status, ScheduledJob.STATUS_COMPLETE)
-        self.assertEqual(job2.return_value, u'8.0')
+        self.assertEqual(job2.return_value, '8.0')
 
         self.assertLess(job1.execution_start, job2.execution_start)
 
@@ -50,7 +50,7 @@ class JobsTestCase(TransactionTestCase):
 
         job.refresh_from_db()
         self.assertEqual(job.status, ScheduledJob.STATUS_COMPLETE)
-        self.assertEqual(job.return_value, u'8.0')
+        self.assertEqual(job.return_value, '8.0')
 
     def test_run_jobs_failed(self):
         job = schedule_job(
